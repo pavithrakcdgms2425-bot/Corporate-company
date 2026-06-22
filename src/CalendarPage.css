@@ -1,0 +1,126 @@
+.calendar-page {
+  padding: 30px;
+  min-height: 100vh;
+  background: #f4f7fc;
+}
+
+.calendar-page h1 {
+  color: #1e3a5f;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.meeting-card {
+  max-width: 700px;
+  margin: 25px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.meeting-card h2 {
+  color: #1e3a5f;
+  margin-bottom: 20px;
+}
+
+.meeting-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.meeting-input input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #dce3ee;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.meeting-input input:focus {
+  outline: none;
+  border-color: #1e3a5f;
+}
+
+.meeting-input button {
+  background: #1e3a5f;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.meeting-input button:hover {
+  background: #294b75;
+}
+
+.meeting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #f8fafc;
+  border-left: 5px solid #1e3a5f;
+
+  padding: 15px;
+  margin-bottom: 12px;
+
+  border-radius: 12px;
+
+  transition: 0.3s;
+}
+
+.meeting-item:hover {
+  transform: translateX(5px);
+}
+
+.meeting-item strong {
+  color: #1e3a5f;
+  display: block;
+}
+
+.meeting-item p {
+  margin: 5px 0 0;
+  color: #666;
+}
+
+.meeting-item button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.no-meetings {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+}
+
+/* Highlight dates with meetings */
+.meeting-day {
+  background: #294b75 !important;
+  color: white !important;
+  border-radius: 50%;
+}
+
+/* Calendar selected date */
+.react-calendar__tile--active {
+  background:navy !important;
+  color: white !important;
+  border-radius: 10px;
+}
