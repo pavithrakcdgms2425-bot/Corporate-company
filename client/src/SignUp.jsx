@@ -2,7 +2,7 @@ import "./SignUp.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import API from "./axios";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -22,15 +22,12 @@ function SignUp() {
     }
 
     try {
-      const response = await axios.post(
-        "https://corporate-company.onrender.com/api/auth/register",
-        {
-          name,
-          email,
-          employeeId,
-          password,
-        }
-      );
+      const response = await API.post("/api/auth/register", {
+  name,
+  email,
+  employeeId,
+  password,
+});
 
       alert(response.data.message);
 

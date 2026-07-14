@@ -2,7 +2,7 @@ import "./SignIn.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import API from "./axios";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ function SignIn() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+      const response = await API.post(
         "https://corporate-company.onrender.com/api/auth/login",
         {
           email,
