@@ -22,7 +22,7 @@ function SignUp() {
     }
 
     try {
-      const response = await API.post("/auth/register", {
+      const response = await API.post("https://corporate-company.onrender.com/api/auth/register", {
   name,
   email,
   employeeId,
