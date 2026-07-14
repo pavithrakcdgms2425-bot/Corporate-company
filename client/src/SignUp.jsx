@@ -23,7 +23,7 @@ function SignUp() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://corporate-company.onrender.com/api/auth/register",
         {
           name,
           email,
