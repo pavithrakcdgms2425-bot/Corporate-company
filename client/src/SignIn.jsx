@@ -2,24 +2,42 @@ import "./SignIn.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 function SignIn() {
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const savedName = localStorage.getItem("userName");
-    const savedPassword = localStorage.getItem("userPassword");
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
-    if (name === savedName && password === savedPassword) {
-      localStorage.setItem("isLoggedIn", "true");
+      console.log(response.data);
+
+      // Save JWT Token
+      localStorage.setItem("token", response.data.token);
+
+      // Save User Details
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
+
+      alert(response.data.message);
+
       navigate("/dashboard");
-    } else {
-      alert("Incorrect username or password!");
+    } catch (error) {
+      alert(error.response?.data?.message || "Login Failed");
     }
   };
 
@@ -54,10 +72,10 @@ function SignIn() {
           transition={{ delay: 0.3, duration: 0.4 }}
         >
           <motion.input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             whileFocus={{ scale: 1.02 }}
           />
@@ -85,7 +103,7 @@ function SignIn() {
               className="signup-link"
               onClick={() => navigate("/signup")}
               whileHover={{ scale: 1.05 }}
-              style={{ display: "inline-block" }}
+              style={{ display: "inline-block", cursor: "pointer" }}
             >
               Sign Up
             </motion.span>

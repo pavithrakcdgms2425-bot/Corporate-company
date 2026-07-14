@@ -213,3 +213,6 @@ body {
   font-size: 32px;
   font-weight: bold;
 }
+.hero h1 span{
+  color: rgb(40, 40, 213);
+}

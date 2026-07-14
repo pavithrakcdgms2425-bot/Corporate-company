@@ -2,6 +2,7 @@ import "./SignUp.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -12,7 +13,7 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -20,13 +21,32 @@ function SignUp() {
       return;
     }
 
-    // Save user information
-    localStorage.setItem("userPassword", password);
-    localStorage.setItem("userName", name);
-    localStorage.setItem("userEmail", email);
-    localStorage.setItem("employeeId", employeeId);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          name,
+          email,
+          employeeId,
+          password,
+        }
+      );
 
-    navigate("/signin");
+      alert(response.data.message);
+
+      // Clear form
+      setName("");
+      setEmail("");
+      setEmployeeId("");
+      setPassword("");
+      setConfirmPassword("");
+
+      // Navigate to Sign In page
+      navigate("/signin");
+
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration Failed");
+    }
   };
 
   return (
@@ -118,7 +138,7 @@ function SignUp() {
               className="signin-link"
               onClick={() => navigate("/signin")}
               whileHover={{ scale: 1.05 }}
-              style={{ display: "inline-block" }}
+              style={{ display: "inline-block", cursor: "pointer" }}
             >
               Sign In
             </motion.span>

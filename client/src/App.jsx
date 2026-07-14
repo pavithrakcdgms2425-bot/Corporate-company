@@ -10,6 +10,7 @@ import Layout from "./Layout";
 import EmployeePage from "./EmployeePage";
 import Analytics from "./Analytics";
 import NotFound from "./NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   // `location` + `key` lets AnimatePresence detect when the route
@@ -23,7 +24,14 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
           <Route path="/tasks" element={<TasksPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/employees" element={<EmployeePage />} />

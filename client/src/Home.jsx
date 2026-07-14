@@ -64,7 +64,7 @@ function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Welcome to PaviTech
+          Welcome to Pavi<span>Tech</span>
         </motion.h1>
 
         <div className="container">
