@@ -22,7 +22,7 @@ function SignUp() {
     }
 
     try {
-      const response = await API.post("/api/auth/register", {
+      const response = await API.post("/auth/register", {
   name,
   email,
   employeeId,
